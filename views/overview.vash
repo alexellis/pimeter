@@ -1,0 +1,13 @@
+@html.extend('layout', function(model) {
+	@html.block('content', function(model) {
+		<h2>Overview</h2>
+		<p>This is the energy usage for the last 24 hours</p>
+		<div class="pis" id="pis">
+			<ul>
+		@model.usage_results.forEach(function(result) {
+			<li>@result.hour hrs - @(@result.total).toFixed(2) kWh</li>
+		})
+			</ul>
+		</div>
+		})
+	})
