@@ -12,10 +12,27 @@ var get_data = function(write_back) {
 
 exports.overview = function(req,res) {
 	var write_back=function(results){ 
-	console.log(results);
+//		console.log(results);
+		var total=0;
+		results.forEach(function(r){
+			total += Number(r.total);
+		});
+		var highest=undefined;
+		results.forEach(function(r){
+			if(!highest) {
+				highest=r;
+			}else {
+				if(r.total>highest.total) {
+					highest=r;
+				}
+			}
+		});
+
 		res.render('overview', 
 				{title: "Energy usage",
-				usage_results : results
+				usage_results : results,
+				total: total,
+				highest_hour: highest
 			});
 		};
 

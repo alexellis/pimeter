@@ -17,6 +17,7 @@ app.set('port', process.env.PORT || 8000);
 
 app.get('/', routes.overview);
 app.use('/bower_components', express.static(path.join(__dirname,'/bower_components')));
+app.use('/style', express.static(path.join(__dirname,'/style')));
 
 app.listen(app.get('port'), function() {
 	console.log("Listening on port " +app.get('port')) ;
