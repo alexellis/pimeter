@@ -36,6 +36,5 @@ exports.overview = function(req,res) {
 				highest_hour: highest
 			});
 		};
-
 	get_data(write_back);
 };
