@@ -30,23 +30,6 @@ exports.overview = function(req,res) {
 		});
 
 		var comparator= function(a, b) {
-			// var x=a;
-			// var y=b;
-			// if(a[0]==' '){
-			// 	x=a.substring(1);
-			// }
-			// if(b[0]==' '){
-			// 	y=b.substring(1);
-			// }
-			// var nx=Number(x);
-			// var ny=Number(y);
-			// if(nx>ny){
-			// 	return 1;
-			// }else if(nx<ny){
-			// 	return -1;
-			// }
-			// return 0;
-			console.log(a);
 			if(a.hour > b.hour){
 				return 1;
 			}
