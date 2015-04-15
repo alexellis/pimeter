@@ -12,6 +12,7 @@ var get_data = function(write_back) {
 
 exports.overview = function(req,res) {
 	var write_back=function(results){ 
+		
 //		console.log(results);
 		var total=0;
 		results.forEach(function(r){
@@ -30,7 +31,7 @@ exports.overview = function(req,res) {
 
 		res.render('overview', 
 				{title: "Energy usage",
-				usage_results : results,
+				usage_results : results.sort().reverse(),
 				total: total,
 				highest_hour: highest
 			});
