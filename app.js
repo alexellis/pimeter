@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.set('port', process.env.PORT || 8000);
 
 app.get('/', routes.overview);
+app.get('/history/:days', routes.overview);
 app.use('/bower_components', express.static(path.join(__dirname,'/bower_components')));
 app.use('/style', express.static(path.join(__dirname,'/style')));
 

@@ -1,19 +1,38 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('energy.db');
 
-var get_data = function(write_back) {
-	var query="select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy where energy_date between date('now','start of day') and date('now') group by strftime('%H', energy_time);";
+var get_data = function(offset, write_back) {
+	var modifier='';
+	if(offset>0) {
+		modifier = ',\'-'+offset+' days\'';
+	}
+	var query="select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy "+
+	"where energy_date = date('now'"+modifier+") "+
+	"group by strftime('%H', energy_time);";
+	// console.log(query);
 	db.serialize(function() {
 		db.all(query, function(err,rows) {
-			write_back(rows);
+			if(err){
+				console.log(err);
+			}
+			// console.log(rows);
+			write_back(offset, rows);
 		});
 	});
 };
 
 exports.overview = function(req,res) {
-	var write_back=function(results){ 
-		
-//		console.log(results);
+	var describe_offset = function(offset) {
+		if(offset==0){
+			return 'today';
+		}
+		else if(offset==1) {
+			return "yesterday";
+		}
+		return offset + " days ago";
+	};
+
+	var write_back=function(dayOffset, results){ 
 		var total=0;
 		results.forEach(function(r){
 			total += Number(r.total);
@@ -38,12 +57,18 @@ exports.overview = function(req,res) {
 			}
 			return 0;
 		};
+
 		res.render('overview', 
 				{title: "Energy usage",
 				usage_results : results.sort(comparator).reverse(),
 				total: total,
-				highest_hour: highest
+				highest_hour: highest,
+				offset_desc: describe_offset(dayOffset)
 			});
 		};
-	get_data(write_back);
+		var dayOffset=0;
+		if(req.params&&req.params.days) {
+			dayOffset=req.params.days;
+		}
+	get_data(dayOffset, write_back);
 };

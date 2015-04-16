@@ -2,7 +2,7 @@
 	@html.block('content', function(model) {
 		<div class="jumbotron">
 			<h2>Energy meter</h2>
-			<p>Total used today: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
+			<p>Total used @model.offset_desc: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
 		</div>
 
 		<div class="panel panel-default">
