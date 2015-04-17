@@ -21,7 +21,6 @@ var get_data = function(offset, write_back) {
 	});
 };
 
-exports.overview = function(req,res) {
 	var describe_offset = function(offset) {
 		if(offset==0){
 			return 'today';
@@ -32,11 +31,17 @@ exports.overview = function(req,res) {
 		return offset + " days ago";
 	};
 
-	var write_back=function(dayOffset, results){ 
-		var total=0;
-		results.forEach(function(r){
-			total += Number(r.total);
-		});
+	var comparator = function(a, b) {
+		if(a.hour > b.hour){
+			return 1;
+		}
+		if(a.hour < b.hour){
+			return -1;
+		}
+		return 0;
+	};
+
+var get_highest_value =function(results){
 		var highest = undefined;
 		results.forEach(function(r){
 			if(!highest) {
@@ -47,28 +52,51 @@ exports.overview = function(req,res) {
 				}
 			}
 		});
-
-		var comparator = function(a, b) {
-			if(a.hour > b.hour){
-				return 1;
-			}
-			if(a.hour < b.hour){
-				return -1;
-			}
-			return 0;
-		};
+		return highest;
+};
+exports.overview = function(req,res) {
+	var write_back = function(dayOffset, results){ 
+		var total=0;
+		results.forEach(function(r){
+			total += Number(r.total);
+		});
 
 		res.render('overview', 
 				{title: "Energy usage",
 				usage_results : results.sort(comparator).reverse(),
 				total: total,
-				highest_hour: highest,
-				offset_desc: describe_offset(dayOffset)
+				highest_hour: get_highest_value(results),
+				offset_desc: describe_offset(dayOffset),
+				offset:dayOffset
 			});
 		};
 		var dayOffset=0;
 		if(req.params&&req.params.days) {
 			dayOffset=req.params.days;
 		}
-	get_data(dayOffset, write_back);
+		get_data(dayOffset, write_back);
 };
+
+exports.graph = function(req,res) {
+	var write_back = function(dayOffset, results){ 
+		var total=0;
+		results.forEach(function(r){
+			total += Number(r.total);
+		});
+
+		res.render('graph', 
+				{title: "Energy usage",
+				usage_results : results.sort(comparator),
+				total: total,
+				highest_hour: get_highest_value(results),
+				offset_desc: describe_offset(dayOffset),
+				offset:dayOffset
+			});
+		};
+		var dayOffset=0;
+		if(req.params&&req.params.days) {
+			dayOffset=req.params.days;
+		}
+		get_data(dayOffset, write_back);
+};
+
