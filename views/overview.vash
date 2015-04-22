@@ -12,14 +12,14 @@
 		  <h4><a href="/graph/@model.offset">View as chart</a></h4>
 		  </p>
 			<ul class="list-group">
-		@model.usage_results.forEach(function(result) {
-			@if(result.hour == model.highest_hour.hour) {
-				<li class="list-group-item"><strong>@result.hour hrs - @(@result.total).toFixed(2) kWh</strong>&nbsp;<span class="glyphicon glyphicon-triangle-top"></span></li>
-			}
-			else {
-				<li class="list-group-item">@result.hour hrs - @(@result.total).toFixed(2) kWh</li>
-			}
-		})
+			@model.usage_results.forEach(function(result) {
+				@if(result.hour == model.highest_hour.hour) {
+					<li class="list-group-item"><strong>@result.hour hrs - @(@result.total).toFixed(2) kWh</strong>&nbsp;<span class="glyphicon glyphicon-triangle-top"></span></li>
+				}
+				else {
+					<li class="list-group-item">@result.hour hrs - @(@result.total).toFixed(2) kWh</li>
+				}
+			})
 			</ul>
 		  </div>
 		</div>

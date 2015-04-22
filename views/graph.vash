@@ -5,11 +5,12 @@
 			<p>Total used @model.offset_desc: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
 		</div>
 <h4>Usage chart</h4>
+
 <canvas id="myChart" width="700" height="400"></canvas>
 
 <script language="Javascript">
 	$(document).ready(function(){
-		var options=
+		var options =
 		{
 		    ///Boolean - Whether grid lines are shown across the chart
 		    scaleShowGridLines : true,
@@ -57,17 +58,30 @@
 		};
 
 		var dataSet = [];
-
 		@model.usage_results.forEach(function(result) { 
-		<text>add_data(</text> @result.total <text>);</text> }
-		 );
-
+		<text>
+			add_data(</text> @result.total <text>);</text>
+		}
+		)
 		function add_data(v){
 			dataSet.push(v);
 		}
 
-		var hourLabels = ["00","01","02","03","04","05","06","07","08","09","10","11",
-					  "12","13","14","15","16","17","18","19","20","22","23"];
+		var pad = function(v) {
+			var value;
+			if(v.length==0) {
+				value="0"+v;
+			}
+			else {
+				value=v;
+			}
+			return value;
+		};
+
+		var hourLabels = [];
+		for(var i=0;i< 24; i++) {
+			hourLabels.push(pad(i));
+		}
 
 		var data = {
 		    labels: hourLabels,
@@ -92,4 +106,6 @@
 
 		})
 	})
+
 <script src="/bower_components/Chart.js/Chart.js"></script>
+<script src="/script/graph.js"></script>
