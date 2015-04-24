@@ -11,6 +11,24 @@
 		<script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript" language="javascript"></script>
 	</head>
 	<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Energy Meter</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+
+        <li @( ( (model.title=="overview"||model.title=="graph") && model.offset==0 ) ? "class=active" : '')><a href="/">Today</a></li>
+        <li @( ( (model.title=="overview"||model.title=="graph") && model.offset==1 ) ? "class=active" : '')><a href="/history/1/">Yesterday</a></li>
+      </ul>
+       <ul class="nav navbar-nav navbar-right">
+        <li @(model.title=="stats" ? "class=active" : '')><a href="/stats"><span class="glyphicon glyphicon-stats"></span> Stats</a></li>
+       </ul>
+    </div>
+  </div>
+</nav>
+
 	<div class="container">
 			@html.block('content')
 	</div>

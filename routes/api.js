@@ -39,7 +39,7 @@ exports.stats = function(req,res) {
 	var write_back=function (totals) {
 		res.render('stats',  
 			{
-				title: "Energy usage",
+				title: "stats",
 				totalEnergy : totals.totalEnergy,
 				totalEnergyWeek: totals.totalEnergyWeek,
 				totalEnergyHour: totals.totalEnergyHour
@@ -58,7 +58,7 @@ exports.overview = function(req,res) {
 		});
 
 		res.render('overview', 
-				{title: "Energy usage",
+				{title: "overview",
 				usage_results : results.sort(comparator).reverse(),
 				total: total,
 				highest_hour: get_highest_value(results),
@@ -81,7 +81,7 @@ exports.graph = function(req,res) {
 		});
 
 		res.render('graph', 
-				{title: "Energy usage",
+				{title: "graph",
 				usage_results : results.sort(comparator),
 				total: total,
 				highest_hour: get_highest_value(results),
