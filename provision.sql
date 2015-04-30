@@ -5,4 +5,4 @@ energy_date date,
 energy_time time
 );
 
-
+create index energy_date on energy (energy_date desc);
