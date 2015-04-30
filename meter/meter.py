@@ -5,6 +5,7 @@ from db import db
 ser = serial.Serial('/dev/ttyAMA0',baudrate=9600)
 
 print ser.isOpen()
+db1 = db('../energy.db')
 
 while True:
         s = ser.readline()
