@@ -12,5 +12,4 @@ while True:
         print s.rstrip()
         kw=float(1)/1000
         db1.write_energy(kw)
-
 ser.close()
