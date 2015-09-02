@@ -30,7 +30,7 @@ var get_data = function(offset, write_back) {
 			}
 
 			rows.forEach(function(row){
-				hours[Number(row.hour)].total = row.total;
+				hours[Number(row.hour)].total = row.total.toFixed(2);
 			});
 			write_back(offset, hours);
 		});
