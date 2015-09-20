@@ -6,4 +6,4 @@ db1 = db('energy_test.db')
 while True:
         kw=float(1)/1000
         db1.write_energy(kw)
-        time.sleep(1)
+        time.sleep(0.07)

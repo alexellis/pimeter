@@ -62,27 +62,50 @@ class db:
 			if con:
 				con.close()
 
-	def write_energy(self,kwh):
+	def get_current_minute_entry(self):
+		con = sql.connect(self.db_name)
+		cur = con.cursor()
+		log_id=None
+		cur.execute("select log_id, kw_h from energy where energy_date=date('now') and energy_time=strftime('%H:%M:00',time('now')) limit 1;");
+		data = cur.fetchone();
+		con.close()
+		return data
+
+	def update_minute(self, log_id,total):
 		try:
 			con = sql.connect(self.db_name)
 			cur = con.cursor()
-
-			cur.execute("select log_id, kw_h from energy where energy_date=date('now') and energy_time=strftime('%H:%M:00',time('now')) limit 1;");
-			data = cur.fetchone();
-
-			if data is not None:
-				print "Updating minute"
-				log_id = data[0]
-				total = float(data[1])+kwh
-				cur.execute("update energy set kw_h='"+str(total)+"' where log_id='"+str(log_id)+"'")
-			else:
-				print "Inserting minute"
-				cur.execute("insert into energy values (?,?,date(),strftime('%H:%M:00',time('now')))",[None,kwh])
-
+			cur.execute("update energy set kw_h='"+str(total)+"' where log_id='"+str(log_id)+"'")		
 			con.commit()
+			con.close()
 		except sql.Error, e:
 			print e
 			sys.exit(1)
 		finally:
 			if con:
 				con.close()
+
+	def insert_minute(self, kwh):
+		try:
+			con = sql.connect(self.db_name)
+			cur = con.cursor()
+			cur.execute("insert into energy values (?,?,date(),strftime('%H:%M:00',time('now')))",[None, kwh])
+			con.commit()
+			con.close()
+		except sql.Error, e:
+			print e
+			sys.exit(1)
+		finally:
+			if con:
+				con.close()
+
+	def write_energy(self,kwh):
+		data = self.get_current_minute_entry()
+		if data is not None:
+			log_id = data[0]
+			total = float(data[1])+kwh
+			print "Updating minute to " + str(total)
+			self.update_minute(log_id, total)
+		else:
+			print "Inserting minute"
+			self.insert_minute(kwh)

@@ -9,14 +9,30 @@ var get_data = function(offset, write_back) {
 	var query="select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy "+
 	"where energy_date = date('now'"+modifier+") "+
 	"group by strftime('%H', energy_time);";
-	// console.log(query);
+
 	db.serialize(function() {
 		db.all(query, function(err,rows) {
 			if(err){
 				console.log(err);
 			}
-			// console.log(rows);
-			write_back(offset, rows);
+			var hours = [];
+			var padHour = function(index){
+				if(index==0){
+					return "0";
+				}
+				else if(index<10){
+					return "0"+index;
+				}
+				return index+"";
+			}
+			for(var i=0;i<24;i++){
+				hours[i]={total:0,hour: padHour(i) };
+			}
+
+			rows.forEach(function(row){
+				hours[Number(row.hour)].total = row.total.toFixed(2);
+			});
+			write_back(offset, hours);
 		});
 	});
 };
