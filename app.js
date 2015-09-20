@@ -4,6 +4,7 @@ var routes = require('./routes/web');
 var apiRoutes = require('./routes/api');
 var bodyParser = require("body-parser");
 var path = require('path');
+var port = 80;
 
 var app = express();
 
@@ -13,7 +14,7 @@ app.disable('etag');
 app.set('views',  __dirname+ '/views');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 80);
 
 app.get('/stats/', routes.stats);
 app.get('/history/:days/', routes.overview);
