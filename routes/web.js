@@ -30,12 +30,13 @@ exports.overview = function(req,res) {
 				offset_desc : overview.describe_offset(dayOffset),
 				offset : dayOffset
 			});
-		};
-		var dayOffset=0;
-		if(req.params && req.params.days) {
-			dayOffset = req.params.days;
-		}
-		repository.get_data(dayOffset, write_back);
+	};
+
+	var dayOffset = 0;
+	if(req.params && req.params.days) {
+		dayOffset = req.params.days;
+	}
+	repository.get_data(dayOffset, write_back);
 };
 
 exports.graph = function(req, res) {
