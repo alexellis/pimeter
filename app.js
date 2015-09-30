@@ -4,6 +4,8 @@ var routes = require('./routes/web');
 var apiRoutes = require('./routes/api');
 var bodyParser = require("body-parser");
 var path = require('path');
+
+// Change to higher port if you want to run this without sudo.
 var port = 80;
 
 var app = express();
@@ -14,7 +16,7 @@ app.disable('etag');
 app.set('views',  __dirname+ '/views');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || port);
 
 app.get('/stats/', routes.stats);
 app.get('/history/:days/', routes.overview);

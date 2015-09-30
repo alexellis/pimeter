@@ -1,32 +1,34 @@
-import serial
-import sqlite3 as sql
+# Deprecated. See utility 'meter.py' within the folder: ./meter/
 
-def write_energy(kwh):
-	try:
-		con = sql.connect('energy.db')
-		cur=con.cursor()
-		cur.execute("insert into energy values (?,?,date(),time())",[None,kwh])
-		con.commit()
-	except sql.Error, e:
-		print e
-		sys.exit(1)
-	finally:
-		if con:
-			con.close()
+# import serial
+# import sqlite3 as sql
 
-ser = serial.Serial('/dev/ttyAMA0',baudrate=9600)
+# def write_energy(kwh):
+# 	try:
+# 		con = sql.connect('energy.db')
+# 		cur=con.cursor()
+# 		cur.execute("insert into energy values (?,?,date(),time())",[None,kwh])
+# 		con.commit()
+# 	except sql.Error, e:
+# 		print e
+# 		sys.exit(1)
+# 	finally:
+# 		if con:
+# 			con.close()
 
-#ser.baudrate = 9600
+# ser = serial.Serial('/dev/ttyAMA0',baudrate=9600)
 
-#ser.open()
+# #ser.baudrate = 9600
 
-print ser.isOpen()
+# #ser.open()
 
-while True:
-	s= ser.readline()
-	print s.rstrip()
-	kw=float(1)/1000
-	write_energy(kw)
+# print ser.isOpen()
 
-ser.close()
+# while True:
+# 	s= ser.readline()
+# 	print s.rstrip()
+# 	kw=float(1)/1000
+# 	write_energy(kw)
+
+# ser.close()
 

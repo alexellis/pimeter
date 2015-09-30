@@ -1,3 +1,5 @@
+# This utility can be used to compress recordings down into 1 row per minute.
+
 import time
 import sqlite3 as sql
 from db import db

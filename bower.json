@@ -1,10 +1,10 @@
 {
-  "name": "Dashr",
+  "name": "PiMeter",
   "version": "0.0.0",
   "authors": [
     "Alex Ellis <AlexEllis2@gmail.com>"
   ],
-  "description": "Dashboard for PIs",
+  "description": "Smart energy meter for LED-based energy meters",
   "main": "app.js",
   "moduleType": [
     "node"
