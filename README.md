@@ -8,7 +8,12 @@ This project provides a daily and historical usage graph of energy consumption. 
 - A Raspberry PI
 - An electric meter which has a blinking LED to indicate current consumption
  
-### Installation
+### Installation on Arduino
+- Open the arduino/flasher.ino sketch in the Arduino IDE
+- Select your device and flash the code.
+- Install LDR and signal LED to correct pins as per the sketch.
+
+### Installation for Raspberry PI
 - npm install bower -g
 - npm install
 - bower install
