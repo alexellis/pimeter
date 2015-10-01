@@ -3,3 +3,5 @@ node_modules
 energy.db
 *.pyc
 .pyc
+.DS_Store
+arduino/.DS_Store
