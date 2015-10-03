@@ -18,6 +18,7 @@ This project provides a daily and historical usage graph of energy consumption. 
 - npm install
 - bower install
 - node app - then navigate to http://localhost/
+- Initialize the empty energy DB with the following command: `sqlite3 energy.db < provision.sql`
 
 ### Running the software
 - Flash your Arduino with the software and attach its LDR to the blinking LED on your energy meter.
