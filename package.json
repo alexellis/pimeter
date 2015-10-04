@@ -1,7 +1,7 @@
 {
-  "name": "Dashr",
+  "name": "MeterPI",
   "version": "1.0.0",
-  "description": "Dashboard for Raspberry PI",
+  "description": "Smart energy meter DB and website for Raspberry PI",
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.12.2",

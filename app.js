@@ -5,8 +5,7 @@ var apiRoutes = require('./routes/api');
 var bodyParser = require("body-parser");
 var path = require('path');
 
-// Change to higher port if you want to run this without sudo.
-var port = 80;
+var port = 8080;
 
 var app = express();
 
