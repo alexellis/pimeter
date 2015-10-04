@@ -1,0 +1,25 @@
+@html.extend('layout', function(model) {
+	@html.block('content', function(model) {
+		<div class="jumbotron">
+			<h2>Statistics</h2>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">Running totals</div>
+			<div class="panel-body">
+				<p>This is a running total and list of all energy usage recorded to date.</p>
+				<div class="well">
+					<dl class="dl-horizontal">
+						<dt>Total energy recorded:</dt>
+						<dd>@model.totalEnergy.toFixed(2) <text>kWh</text></dd>
+						<dt>Last seven days:</dt>
+						<dd>@model.totalEnergyWeek.toFixed(2) <text>kWh</text></dd>
+						<dt>Last hour:</dt>
+						<dd>@model.totalEnergyHour.toFixed(2) <text>kWh</text></dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	})
+})
+

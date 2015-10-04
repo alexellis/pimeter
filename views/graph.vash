@@ -1,0 +1,52 @@
+@html.extend('layout', function(model) {
+	@html.block('content', function(model) {
+		<div class="jumbotron">
+			<h2>Chart</h2>
+			<p>Total used @model.offset_desc: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
+		</div>
+<h4>Usage chart</h4>
+
+<canvas id="myChart" width="700" height="400"></canvas>
+
+<script language="Javascript">
+	$(document).ready(function(){
+
+		var dataSet = [];	
+		function add_data(set, v){
+			set.push(v);
+		}
+
+		@model.usage_results.forEach(
+			function(result) { 
+			<text>add_data(dataSet, </text> @result.total <text>);</text>
+			}
+		)
+
+		var hourLabels = buildPaddedList(24);
+
+		var data = {
+		    labels: hourLabels,
+		    datasets: [
+		        {
+		            label: "Today's usage",
+		            fillColor: "rgba(92, 173, 92,0.4)",
+		            strokeColor: "rgba(220,220,220,1)",
+		            pointColor: "rgba(220,220,220,1)",
+		            pointStrokeColor: "#fff",
+		            pointHighlightFill: "#fff",
+		            pointHighlightStroke: "rgba(220,220,220,1)",
+		            data: dataSet
+		        },
+		    ]
+		};
+		var ctx = $("#myChart").get(0).getContext("2d");
+		var chart = new Chart(ctx).Line(data, graphOptions);
+
+	});
+</script>
+
+		})
+	})
+
+<script src="/script/graph.js"></script>
+<script src="/bower_components/Chart.js/Chart.js"></script>

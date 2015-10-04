@@ -1,0 +1,27 @@
+@html.extend('layout', function(model) {
+	@html.block('content', function(model) {
+		<div class="jumbotron">
+			<h2>Overview</h2>
+			<p>Total used @model.offset_desc: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">Power usage by hour</div>
+		  <div class="panel-body">
+		  <p>
+		  <h4><a href="/graph/@model.offset">View as chart</a></h4>
+		  </p>
+			<ul class="list-group">
+			@model.usage_results.forEach(function(result) {
+				@if(result.hour == model.highest_hour.hour) {
+					<li class="list-group-item"><strong>@result.hour hrs - @Number(@result.total).toFixed(2) kWh</strong>&nbsp;<span class="glyphicon glyphicon-triangle-top"></span></li>
+				}
+				else {
+					<li class="list-group-item">@result.hour hrs - @Number(result.total).toFixed(2) kWh</li>
+				}
+			})
+			</ul>
+		  </div>
+		</div>
+		})
+	})

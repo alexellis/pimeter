@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">	
+		<title>@model.title</title>
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="/style/style.css">
+		<script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript" language="javascript"></script>
+		<script src="/bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript" language="javascript"></script>
+	</head>
+	<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNav">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>                        
+				</button>
+		      <a class="navbar-brand" href="/">Energy Meter</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="topNav">
+		      <ul class="nav navbar-nav">
+		        <li @( ( (model.title=="overview"||model.title=="graph") && model.offset==0 ) ? "class=active" : '')><a href="/">Today</a></li>
+		        <li @( ( (model.title=="overview"||model.title=="graph") && model.offset==1 ) ? "class=active" : '')><a href="/history/1/">Yesterday</a></li>
+		      </ul>
+		       <ul class="nav navbar-nav navbar-right">
+		        <li @(model.title=="stats" ? "class=active" : '')><a href="/stats"><span class="glyphicon glyphicon-stats"></span> Stats</a></li>
+		       </ul>
+		    </div>
+	</div>
+</nav>
+
+	<div class="container">
+			@html.block('content')
+	</div>
+	<footer>
+		@html.block('footer')	
+	</footer>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "PiMeter",
+  "version": "0.0.0",
+  "authors": [
+    "Alex Ellis <AlexEllis2@gmail.com>"
+  ],
+  "description": "Smart energy meter for LED-based energy meters",
+  "main": "app.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "bootstrap": "~3.3.4",
+    "Chart.js": "~1.0.2"
+  }
+}
