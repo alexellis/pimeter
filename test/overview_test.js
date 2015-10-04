@@ -6,7 +6,7 @@ describe("overview get_highest_value", function() {
     var highest = overview.get_highest_value(results);
     assert.ok(!highest);
   }),
-  it("highest item is only item", function() {
+  it("gives highest item is only item", function() {
     var results = [{total:0}];
     var highest = overview.get_highest_value(results);
     assert.ok(highest == results[0]);
@@ -21,5 +21,18 @@ describe("overview get_highest_value", function() {
     var highest = overview.get_highest_value(results);
     assert.ok(highest == results[1]);
   })
+});
+
+describe("describe_offset",function() {
+  it("gives today with zero offset", function() {
+    assert.ok( 'today' == overview.describe_offset(0));
+  }),
+  it("gives yesterday with (1 day) offset", function() {
+    assert.ok( 'yesterday' == overview.describe_offset(1));
+  }),
+  it("gives day(s) ago with >1 offset", function() {
+    assert.equal( '2 days ago' ,overview.describe_offset(2));
+  })
+
 
 });
