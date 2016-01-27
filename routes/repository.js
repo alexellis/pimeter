@@ -2,13 +2,13 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('energy.db');
 
 var get_data = function(offset, write_back) {
-	var modifier='';
-	if(offset>0) {
+	var modifier = '';
+	if(offset > 0) {
 		modifier = ',\'-'+offset+' days\'';
 	}
-	var query="select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy "+
-	"where energy_date = date('now'"+modifier+") "+
-	"group by strftime('%H', energy_time);";
+	var query = "select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy "+
+			"where energy_date = date('now'"+modifier+") "+
+			"group by strftime('%H', energy_time);";
 
 	db.serialize(function() {
 		db.all(query, function(err,rows) {
@@ -77,6 +77,5 @@ var get_stats=function(write_back){
 	get_total(undefined, first);
 };
 
-exports.get_data=get_data;
-exports.get_stats=get_stats;
-
+exports.get_data = get_data;
+exports.get_stats = get_stats;

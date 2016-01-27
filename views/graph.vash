@@ -4,9 +4,9 @@
 			<h2>Chart</h2>
 			<p>Total used @model.offset_desc: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
 		</div>
-<h4>Usage chart</h4>
+		<h4>Usage chart</h4>
 
-<canvas id="myChart" width="700" height="400"></canvas>
+		<canvas id="myChart" width="700" height="400"></canvas>
 
 <script language="Javascript">
 	$(document).ready(function(){
@@ -44,9 +44,8 @@
 
 	});
 </script>
-
-		})
 	})
+})
 
 <script src="/script/graph.js"></script>
 <script src="/bower_components/Chart.js/Chart.js"></script>
