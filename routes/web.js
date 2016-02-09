@@ -14,23 +14,14 @@ exports.stats = function(req,res) {
 };
 
 exports.overview = function(req,res) {
-	var write_back = function(dayOffset, results) {
-		var total = 0;
-		results.forEach(function(r) {
-			total += Number(r.total);
-		});
-
-		res.render('overview', {
-					title : "overview",
-					offset : dayOffset
-			});
-	};
-
 	var dayOffset = 0;
 	if(req.params && req.params.days) {
 		dayOffset = req.params.days;
 	}
-	repository.get_data(dayOffset, write_back);
+	res.render('overview', {
+			title : "overview",
+			offset : dayOffset
+	});
 };
 
 exports.graph = function(req, res) {
