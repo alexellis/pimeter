@@ -13,7 +13,7 @@ exports.stats = function(req,res) {
 	repository.get_stats(write_back);
 };
 
-exports.overview = function(req,res) {
+exports.overview = function(req, res) {
 	var dayOffset = 0;
 	if(req.params && req.params.days) {
 		dayOffset = req.params.days;

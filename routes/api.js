@@ -23,11 +23,10 @@ exports.stats = function(req, res) {
 	repository.get_stats(write_back);
 };
 
-
 exports.overview = function(req, res) {
 	var write_back = function(dayOffset, results) {
 		var total=0;
-		results.forEach(function(r){
+		results.forEach(function(r) {
 			total += Number(r.total);
 		});
 

@@ -11,8 +11,8 @@ var get_data = function(offset, write_back) {
 			"group by strftime('%H', energy_time);";
 
 	db.serialize(function() {
-		db.all(query, function(err,rows) {
-			if(err){
+		db.all(query, function(err, rows) {
+			if(err) {
 				console.log(err);
 			}
 			var hours = [];
@@ -25,7 +25,7 @@ var get_data = function(offset, write_back) {
 				}
 				return index+"";
 			}
-			for(var i=0;i<24;i++){
+			for(var i=0;i<24;i++) {
 				hours[i]={total:0,hour: padHour(i) };
 			}
 
@@ -37,7 +37,7 @@ var get_data = function(offset, write_back) {
 	});
 };
 
-var get_total =function(timeClause,back)
+var get_total = function(timeClause,back)
 {
 	var query=";";
 	if(!timeClause) {
@@ -55,8 +55,8 @@ var get_total =function(timeClause,back)
 		});
 };
 
-var get_stats=function(write_back){
-	var totals={
+var get_stats=function(write_back) {
+	var totals = {
 		totalEnergy : 0,
 		totalEnergyWeek : 0,
 		totalEnergyHour: 0
