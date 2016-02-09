@@ -1,27 +1,30 @@
 @html.extend('layout', function(model) {
 	@html.block('content', function(model) {
+	<div ng-controller="OverviewController as controller">
+
+	<script>
+		dayOffset = @model.offset;
+	</script>
+
 		<div class="jumbotron">
 			<h2>Overview</h2>
-			<p>Total used @model.offset_desc: <span id="total_energy">@(@model.total).toFixed(2) kWh</span></p>
+			<p>Total used {{overview.offset_desc}} <span id="total_energy">{{overview.total|number:2}} kWh</span></p>
 		</div>
-		
+
 		<div class="panel panel-default">
-		  <div class="panel-heading">Power usage by hour</div>
+		  <div class="panel-heading">Usage over 24 hours</div>
 		  <div class="panel-body">
-		  <p>
-		  <h4><a href="/graph/@model.offset">View as chart</a></h4>
-		  </p>
-			<ul class="list-group">
-			@model.usage_results.forEach(function(result) {
-				@if(result.hour == model.highest_hour.hour) {
-					<li class="list-group-item"><strong>@result.hour hrs - @Number(@result.total).toFixed(2) kWh</strong>&nbsp;<span class="glyphicon glyphicon-triangle-top"></span></li>
-				}
-				else {
-					<li class="list-group-item">@result.hour hrs - @Number(result.total).toFixed(2) kWh</li>
-				}
-			})
-			</ul>
+			  <p>
+			  	<h4><a ng-href="/graph/{{overview.offset}}">View as chart</a></h4>
+			  </p>
+				<ul class="list-group">
+					<li ng-class="{strongHour: entry==highest}" ng-repeat="entry in overview.usage_results" class="list-group-item">
+						{{entry.hour}} hrs - {{entry.total}} kWh
+						<span ng-show="entry==highest" class="glyphicon glyphicon-triangle-top"></span>
+					</li>
+				</ul>
 		  </div>
 		</div>
-		})
+	</div>
 	})
+})

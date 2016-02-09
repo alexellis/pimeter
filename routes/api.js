@@ -25,18 +25,17 @@ exports.stats = function(req, res) {
 
 
 exports.overview = function(req, res) {
-	var write_back = function(dayOffset, results) { 
+	var write_back = function(dayOffset, results) {
 		var total=0;
 		results.forEach(function(r){
 			total += Number(r.total);
 		});
 
 		var hours = [];
-
 		for(var i = 0; i < 24; i++){
 			hours[i]= { total: 0, hour: padHour(i) };
 		}
-		results.forEach(function(row){
+		results.forEach(function(row) {
 			var index =Number(row.hour);
 			hours[index].total = Number(row.total).toFixed(2);
 		});

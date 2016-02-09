@@ -6,7 +6,7 @@ var path = require('path');
 var routes = require('./routes/web');
 var apiRoutes = require('./routes/api');
 
-var port = 8080;
+var port = 80;
 
 var app = express();
 

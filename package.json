@@ -13,6 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "PORT=8080 node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
