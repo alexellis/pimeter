@@ -22,14 +22,14 @@ app.controller('GraphController', ["$scope", "$http", function($scope, $http) {
 	$http.get("/api/day/"+dayOffset)
 	.then(function(response) {
 
-			var results = response.data.usage_results.sort(function(x,y) {
-				var a = parseInt(x.hour);
-				var b = parseInt(y.hour);
-				if(a>b) {
-					return 1;
-				}else if(a<b) {
-					return -1;
-				}
+	var results = response.data.usage_results.sort(function(x,y) {
+			var a = parseInt(x.hour);
+			var b = parseInt(y.hour);
+			if(a>b) {
+				return 1;
+			} else if(a<b) {
+				return -1;
+			}
 				return 0;
 			});
 
@@ -37,30 +37,28 @@ app.controller('GraphController', ["$scope", "$http", function($scope, $http) {
 			function add_data(set, v) {
 				set.push(v);
 			}
-			results.forEach(function(result){
-					dataSet.push(result.total);
+			results.forEach(function(result) {
+				dataSet.push(result.total);
 			});
 
 			var hourLabels = buildPaddedList(24);
 			var data = {
-					labels: hourLabels,
-					datasets: [
-							{
-									label: "Today's usage",
-									fillColor: "rgba(92, 173, 92,0.4)",
-									strokeColor: "rgba(220,220,220,1)",
-									pointColor: "rgba(220,220,220,1)",
-									pointStrokeColor: "#fff",
-									pointHighlightFill: "#fff",
-									pointHighlightStroke: "rgba(220,220,220,1)",
-									data: dataSet
-							},
-					]
+				labels: hourLabels,
+				datasets: [{
+					label: "Today's usage",
+					fillColor: "rgba(92, 173, 92,0.4)",
+					strokeColor: "rgba(220,220,220,1)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220,220,220,1)",
+					data: dataSet
+				},]
 			};
 			var ctx = $("#myChart").get(0).getContext("2d");
 			var chart = new Chart(ctx).Line(data, graphOptions);
-	})
-	.catch(function(err) {
+		})
+		.catch(function(err) {
 
-	});
+		});
 }]);
