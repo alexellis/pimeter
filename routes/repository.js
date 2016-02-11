@@ -2,17 +2,17 @@ var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('energy.db');
 
 var get_data = function(offset, write_back) {
-	var modifier='';
-	if(offset>0) {
+	var modifier = '';
+	if(offset > 0) {
 		modifier = ',\'-'+offset+' days\'';
 	}
-	var query="select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy "+
-	"where energy_date = date('now'"+modifier+") "+
-	"group by strftime('%H', energy_time);";
+	var query = "select sum(kw_h) as total, strftime('%H', energy_time) as hour from energy "+
+			"where energy_date = date('now'"+modifier+") "+
+			"group by strftime('%H', energy_time);";
 
 	db.serialize(function() {
-		db.all(query, function(err,rows) {
-			if(err){
+		db.all(query, function(err, rows) {
+			if(err) {
 				console.log(err);
 			}
 			var hours = [];
@@ -25,7 +25,7 @@ var get_data = function(offset, write_back) {
 				}
 				return index+"";
 			}
-			for(var i=0;i<24;i++){
+			for(var i=0;i<24;i++) {
 				hours[i]={total:0,hour: padHour(i) };
 			}
 
@@ -37,7 +37,7 @@ var get_data = function(offset, write_back) {
 	});
 };
 
-var get_total =function(timeClause,back)
+var get_total = function(timeClause,back)
 {
 	var query=";";
 	if(!timeClause) {
@@ -55,8 +55,8 @@ var get_total =function(timeClause,back)
 		});
 };
 
-var get_stats=function(write_back){
-	var totals={
+var get_stats=function(write_back) {
+	var totals = {
 		totalEnergy : 0,
 		totalEnergyWeek : 0,
 		totalEnergyHour: 0
@@ -77,6 +77,5 @@ var get_stats=function(write_back){
 	get_total(undefined, first);
 };
 
-exports.get_data=get_data;
-exports.get_stats=get_stats;
-
+exports.get_data = get_data;
+exports.get_stats = get_stats;

@@ -3,7 +3,6 @@
 		<div class="jumbotron">
 			<h2>Statistics</h2>
 		</div>
-		
 		<div class="panel panel-default">
 			<div class="panel-heading">Running totals</div>
 			<div class="panel-body">
@@ -22,4 +21,3 @@
 		</div>
 	})
 })
-

@@ -3,22 +3,24 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">	
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>@model.title</title>
 		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="/style/style.css">
+		<script src="/bower_components/angular/angular.min.js" type="text/javascript" language="javascript"></script>
 		<script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript" language="javascript"></script>
-		<script src="/bower_components/bootstrap/dist/js/bootstrap.js" type="text/javascript" language="javascript"></script>
+		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript" language="javascript"></script>
+		<script src="/script/controllers.js" type="text/javascript" language="javascript"></script>
 	</head>
-	<body>
+	<body ng-app="pimeter">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 		    <div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNav">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>                        
+					<span class="icon-bar"></span>
 				</button>
 		      <a class="navbar-brand" href="/">Energy Meter</a>
 		    </div>
@@ -38,7 +40,7 @@
 			@html.block('content')
 	</div>
 	<footer>
-		@html.block('footer')	
+		@html.block('footer')
 	</footer>
 	</body>
 </html>
