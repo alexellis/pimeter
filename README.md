@@ -1,4 +1,7 @@
 # PiMeter
+
+[![Build Status](https://travis-ci.org/alexellis/pimeter.svg?branch=master)](https://travis-ci.org/alexellis/pimeter)
+
 ## Smart energy usage meter for Raspberry PI
 
 This project provides a daily and historical usage graph of energy consumption. This can then be used to indicate cost if this is of interest to you.
