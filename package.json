@@ -11,11 +11,14 @@
     "sqlite3": "^3.0.5",
     "vash": "^0.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0"
+  },
   "scripts": {
     "start": "PORT=8080 node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test/*"
   },
-  "author": "",
-  "license": "GNU"
+  "author": "Alex Ellis",
+  "license": "GPL-3.0"
 }
