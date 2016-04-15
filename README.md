@@ -8,6 +8,7 @@ This projects has everything you need to start monitoring and recording your ele
 
 It is completely non-intrusive and works by watching the blinks given out by a house-hold electric meter. Each blink of the supplier's meter will represent 0.001kWh of energy usage. We use a cheap Arduino nano (clone or genuine) to monitor blnks, then a Raspberry PI runs a rich web interface with daily graphs showing peaks and troughs.
 
+![Mobile energy meter](https://raw.githubusercontent.com/alexellis/pimeter/master/static/mobile_energy.png)
 
 ### Requirements
 - An Arduino with LDR connected and USB cable
